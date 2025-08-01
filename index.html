@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>per te amore ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #a1c4fd, #fbc2eb);
+      overflow-x: hidden;
+      color: #333;
+    }
+
+    #balloons {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .balloon {
+      position: absolute;
+      width: 60px;
+      height: 80px;
+      background: #ff4d6d;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      transform: rotate(-45deg);
+      animation: floatUp 10s infinite ease-in;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) rotate(-45deg); opacity: 1; }
+      100% { transform: translateY(-200px) rotate(-45deg); opacity: 0; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+
+    .heart-image {
+      width: 220px;
+      height: 220px;
+      background: url('TUAFOTO.jpg') no-repeat center/cover;
+      clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 20% 100%, 0% 35%);
+      margin: 0 auto 30px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    #noteSection {
+      display: none;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 360px;
+      background: white;
+      padding: 16px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      z-index: 5;
+    }
+
+    #noteSection p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    #closeNote {
+      background: #ff6b81;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #passwordBox {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      display: inline-block;
+      margin-bottom: 40px;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    button {
+      background: #ff6b81;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #ff4757;
+    }
+
+    .slideshow-container {
+      display: none;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 0;
+    }
+
+    .slide img {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+
+    .navigation {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .navigation button {
+      background: rgba(255,255,255,0.7);
+      border: none;
+      padding: 10px 16px;
+      border-radius: 50%;
+      margin: 0 10px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="balloons"></div>
+  <div class="container" id="introSection">
+    <div class="heart-image"></div>
+    <div id="passwordBox">
+      <p style="margin-bottom: 10px; font-weight: 600;">Inserisci la password per continuare:</p>
+      <input type="password" id="passwordInput" placeholder="Password" />
+      <button onclick="checkPassword()">Invia</button>
+    </div>
+  </div>
+
+  <div id="noteSection">
+    <p>
+Amore, so di averti fatto soffrire e di aver fatto delle cavolate. Mi dispiace davvero tanto, dal profondo del mio cuore. 
+Se posso rimediare in qualche modo, ti prego dimmelo. Non vorrei mai perderti. 
+Sei diventata una persona importantissima nella mia vita. Mi rendi felice, e parlare con te migliora le mie giornate. 
+So che ci sono state incomprensioni e che non ci vedremo fino al 23, e questo mi spezza il cuore. 
+Mi manchi da morire. Quando mi hai detto che non mi vedi più come prima, mi si è spezzato il cuore. 
+Ti scrivevo spesso perché mi mancavi, anche ora è così… ma mi hai detto che ti dà fastidio. 
+Ti amo davvero. ❤️
+</p>
+
+    <button id="closeNote" onclick="toggleNote(false)">Chiudi</button>
+  </div>
+
+  <div class="slideshow-container">
+    <div class="slide"><img src="foto1.jpeg" alt="Foto 1"></div>
+    <div class="slide"><img src="foto2.jpeg" alt="Foto 2"></div>
+    <div class="slide"><img src="foto3.jpeg" alt="Foto 3"></div>
+    <div class="slide"><img src="foto4.jpeg" alt="Foto 4"></div>
+    <div class="slide"><img src="foto5.jpeg" alt="Foto 5"></div>
+    <div class="slide"><img src="foto6.jpeg" alt="Foto 6"></div>
+    <div class="slide"><img src="foto7.jpeg" alt="Foto 7"></div>
+    <div class="navigation">
+      <button onclick="toggleNote(true)">💌</button>
+    </div>
+  </div>
+
+  <script>
+    const balloons = document.getElementById("balloons");
+    for (let i = 0; i < 30; i++) {
+      const b = document.createElement("div");
+      b.className = "balloon";
+      b.style.left = Math.random() * 100 + "vw";
+      b.style.animationDuration = (5 + Math.random() * 5) + "s";
+      balloons.appendChild(b);
+    }
+
+    function checkPassword() {
+      const pw = document.getElementById("passwordInput").value;
+      if (pw === "250525") {
+        document.getElementById("introSection").style.display = "none";
+        document.getElementById("balloons").style.display = "none";
+        document.getElementById("noteSection").style.display = "block";
+        document.querySelector(".slideshow-container").style.display = "block";
+        startSlideshow();
+      } else {
+        alert("Password errata!");
+      }
+    }
+
+    function toggleNote(show) {
+      const note = document.getElementById("noteSection");
+      note.style.display = show ? "block" : "none";
+    }
+
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".slide");
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove("active");
+        if (i === index) {
+          slide.classList.add("active");
+        }
+      });
+    }
+
+    function startSlideshow() {
+      showSlide(currentSlide);
+      setInterval(() => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      }, 4000);
+    }
+  </script>
+</body>
+</html>
